@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { login,loginWithGoogle,loginWithGithub } = useContext(AuthContext);
@@ -13,10 +14,12 @@ const Login = () => {
         console.log(email, password);
         login(email, password)
             .then((res) => {
-                console.log(res.user)
+                console.log(res.user);
+                toast('Log in successful');
             })
             .catch((err) => {
                 console.log(err);
+                toast('Something is wrong');
             })
     }
 
@@ -24,7 +27,7 @@ const Login = () => {
         loginWithGoogle()
             .then(res => {
                 console.log(res.user);
-
+                toast('Log in successful');
             })
             .catch(err => {
                 console.log(err);
@@ -34,7 +37,7 @@ const Login = () => {
         loginWithGithub()
             .then(result => {
                 console.log(result.user);
-                
+                toast('Log in successful');
             })
             .catch(err => {
                 console.log(err);

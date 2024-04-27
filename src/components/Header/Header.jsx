@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip'
 
 const Header = () => {
     const authInfo = useContext(AuthContext);
@@ -44,8 +46,9 @@ const Header = () => {
             <div className="navbar-end">
                 {
                     user?<>
-                        <div className="tooltip tooltip-left" data-tip={name}>
-                                <img onMouseOver={() => setName(user.displayName)} className='w-10 mr-2 rounded-full hover:cursor-pointer' alt="user" src={user.photoURL} />
+                            <div data-tooltip-id="my-tooltip" data-tooltip-content={name}>
+                                <span><Tooltip id="my-tooltip" /></span>
+                            <img onMouseOver={() => setName(user.displayName)} className='w-10 mr-2 rounded-full hover:cursor-pointer' alt="user" src={user.photoURL} />
                             </div>
                             <button onClick={handleLogout} className="btn btn-outline btn-success">Log Out</button>
                     </>:
