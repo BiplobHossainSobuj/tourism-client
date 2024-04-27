@@ -1,7 +1,20 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 const Header = () => {
+    const authInfo = useContext(AuthContext);
+    const {user,logOut} = authInfo;
+    const [name, setName] = useState(null);
+    const handleLogout =()=>{
+        logOut()
+        .then(()=>{
+            console.log('log out');
+        })
+        .catch((err)=>{
+            console.log('log out',err);
+        })
+    }
     const navlinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allTouristSpot'>All Toursits Spot</NavLink></li>
@@ -29,7 +42,19 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user?<>
+                        <div className="tooltip tooltip-left" data-tip={name}>
+                                <img onMouseOver={() => setName(user.displayName)} className='w-10 mr-2 rounded-full hover:cursor-pointer' alt="user" src={user.photoURL} />
+                            </div>
+                            <button onClick={handleLogout} className="btn btn-outline btn-success">Log Out</button>
+                    </>:
+                    <div>
+                        <Link to='/login'><button className="btn btn-outline btn-success">Login</button></Link>
+                        <Link to='/register'><button className="btn btn-outline btn-success">Register</button></Link>
+                    </div>
+                    
+                }
             </div>
         </div>
     );

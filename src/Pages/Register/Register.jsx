@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import { Link } from 'react-router-dom';
 import { FaEye,FaEyeSlash  } from "react-icons/fa";
+import { updateProfile } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const authInfo = useContext(AuthContext);
-    const {createUser} = authInfo;
+    const {user,createUser} = authInfo;
     const [showPassword,setShowPassword] = useState(false);
     const handleRegister =(e)=>{
         e.preventDefault();
@@ -20,6 +22,10 @@ const Register = () => {
         .then(res=>{
             const user = res.user;
             console.log(user);
+            updateProfile(res.user,{
+                displayName: name, photoURL: photoUrl
+            })
+            toast('Registration successfull');
         })
         .catch(err=>{
             console.log(err);
