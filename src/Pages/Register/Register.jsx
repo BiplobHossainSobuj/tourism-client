@@ -1,35 +1,46 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import { Link } from 'react-router-dom';
-import { FaEye,FaEyeSlash  } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { updateProfile } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
 const Register = () => {
     const authInfo = useContext(AuthContext);
-    const {user,createUser} = authInfo;
-    const [showPassword,setShowPassword] = useState(false);
-    const handleRegister =(e)=>{
+    const { user, createUser } = authInfo;
+    const [showPassword, setShowPassword] = useState(false);
+    const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
         const photoUrl = form.photo.value;
         const password = form.password.value;
-        const newUser = {name,email,photoUrl,password};
+        const newUser = { name, email, photoUrl, password };
         console.log(newUser);
-        createUser(name,email,password,photoUrl)
-        .then(res=>{
-            const user = res.user;
-            console.log(user);
-            updateProfile(res.user,{
-                displayName: name, photoURL: photoUrl
+        createUser(name, email, password, photoUrl)
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+                updateProfile(res.user, {
+                    displayName: name, photoURL: photoUrl
+                })
+                // fetch('http://localhost:5000/users', {
+                //     method: 'POST',
+                //     headers: {
+                //         'content-type': 'application/json',
+                //     },
+                //     body: JSON.stringify(newUser)
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         console.log(data)
+                //     })
+                toast('Registration successfull');
             })
-            toast('Registration successfull');
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     return (
@@ -57,8 +68,8 @@ const Register = () => {
                     <label className="label">
                         <span className="label-text">Password</span>
                     </label>
-                    <input type={showPassword?"text":"password"} name='password' placeholder="password" className="input input-bordered" required />
-                    <span className='relative bottom-8 left-96' onClick={()=>setShowPassword(!showPassword)}>{showPassword?<FaEyeSlash />:<FaEye />}</span>
+                    <input type={showPassword ? "text" : "password"} name='password' placeholder="password" className="input input-bordered" required />
+                    <span className='relative bottom-8 left-96' onClick={() => setShowPassword(!showPassword)}>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
                 </div>
                 <div>
                     <label className="label">

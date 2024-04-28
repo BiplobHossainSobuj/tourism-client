@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
+import { useLoaderData } from 'react-router-dom';
 
 const MyList = () => {
+    
     return (
         <div>
-            my list
+           my list
         </div>
     );
 };
