@@ -8,7 +8,21 @@ const MyList = () => {
     const [spots, setSpots] = useState([]);
     console.log(user)
     const handleDelete = (id) => {
-        console.log(id);
+        fetch(`http://localhost:5000/delete/${id}`,{
+            method:'DELETE',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            if (data.deletedCount>0) {
+                const remaining = spots.filter(user=>user._id!==id)
+            setSpots(remaining);
+            }
+        })
     }
 
     useEffect(() => {
