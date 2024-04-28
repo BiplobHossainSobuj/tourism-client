@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TouristSpotCard = ({ spot }) => {
     const {_id,spot_image,tourists_spot_name,average_cost,totalVisitorsPerYear,travel_time,seasonality} =spot;
@@ -15,7 +16,7 @@ const TouristSpotCard = ({ spot }) => {
                 <p>Travel Time:{travel_time}</p>
                 <p>Seasion:{seasonality}</p>
                 <div className="card-actions justify-end">
-                    <button onClick={()=>handleDetails(_id)} className="btn btn-primary">View Details</button>
+                    <Link to={`/allTouristSpot/${_id}`}><button className="btn btn-primary">View Details</button></Link>
                 </div>
             </div>
         </div>

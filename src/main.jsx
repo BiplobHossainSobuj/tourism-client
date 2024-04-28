@@ -18,6 +18,7 @@ import Register from './Pages/Register/Register.jsx';
 import Login from './Pages/Login/Login.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
+import TouristSpotDetails from './Pages/TouristSpotDetails/TouristSpotDetails.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,8 +39,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/allTouristSpot",
-        loader: ()=>fetch('https://tourism-management-server-five.vercel.app/all_tourists_spot'),
+        loader: ()=>fetch('https://tourism-management-server-five.vercel.app/allTouristSpot'),
         element: <AllTouristsSpot></AllTouristsSpot>,
+      },
+      {
+        path: "/allTouristSpot/:id",
+        loader: ({params})=>fetch(`https://tourism-management-server-five.vercel.app/allTouristSpot/${params.id}`),
+        element: <TouristSpotDetails></TouristSpotDetails>,
       },
       {
         path: "/addTouristSpot",

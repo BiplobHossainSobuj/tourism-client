@@ -19,7 +19,7 @@ const AddTouristSpot = () => {
         const user_email = form.email.value;
         const touristsSpotDetails = { tourists_spot_name, country_Name,spot_image,location,description,average_cost,seasonality,travel_time,totalVisitorsPerYear,user_name,user_email };
         console.log(touristsSpotDetails);
-        fetch('https://tourism-management-server-five.vercel.app/all_tourists_spot', {
+        fetch('https://tourism-management-server-five.vercel.app/allTouristSpot', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
