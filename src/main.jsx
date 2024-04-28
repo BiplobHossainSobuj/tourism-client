@@ -19,6 +19,7 @@ import Login from './Pages/Login/Login.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
 import TouristSpotDetails from './Pages/TouristSpotDetails/TouristSpotDetails.jsx';
+import Update from './Pages/Update/Update.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
       {
         path: "/myList",
         element: <ProtectedRoute><MyList></MyList></ProtectedRoute>,
+      },
+      {
+        path: "/update/:id",
+        loader:({params})=>fetch(`http://localhost:5000/update/${params.id}`),
+        element: <ProtectedRoute><Update></Update></ProtectedRoute>,
       },
     ],
   },
