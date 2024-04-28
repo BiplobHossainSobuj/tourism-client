@@ -27,6 +27,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        loader: ()=>fetch('https://tourism-management-server-five.vercel.app/allTouristSpot'),
         element: <Home></Home>,
       },
       {

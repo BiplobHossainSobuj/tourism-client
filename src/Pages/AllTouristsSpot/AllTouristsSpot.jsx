@@ -6,7 +6,7 @@ const AllTouristsSpot = () => {
     const touristSpotDetails = useLoaderData();
     const [touristSpots,setTouristSpots] = useState(touristSpotDetails);
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 container mx-auto'>
+        <div className='grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 container mx-auto'>
             {
                 touristSpots.map(spot=><TouristSpotCard key={spot._id} spot={spot}></TouristSpotCard>)
             }
