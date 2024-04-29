@@ -20,6 +20,7 @@ import AuthProvider from './context/AuthProvider.jsx';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
 import TouristSpotDetails from './Pages/TouristSpotDetails/TouristSpotDetails.jsx';
 import Update from './Pages/Update/Update.jsx';
+import CountryDetails from './Pages/CountryDetails/CountryDetails.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
       {
         path: "/myList",
         element: <ProtectedRoute><MyList></MyList></ProtectedRoute>,
+      },
+      {
+        path:"/allTouristSpot/countries/:country_Name",
+        loader:({params})=>fetch(`http://localhost:5000/countries/${params.country_Name}`),
+        element:<CountryDetails></CountryDetails>
       },
       {
         path: "/update/:id",
