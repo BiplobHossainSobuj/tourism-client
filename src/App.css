@@ -1,11 +1,4 @@
 :root {
     --swiper-theme-color: linear-gradient(to right, #2DD4BF, #2563EB);
     --swiper-navigation-color: #E49A38;
-    --my-color: #fff;
 }
-[data-theme='dark'] {
-    --my-color: #000;
-  }
-  [data-theme='pink'] {
-    --my-color: #ffabc8;
-  }
