@@ -44,6 +44,9 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+            <button data-toggle-theme="dark,light" data-act-class="ACTIVECLASS">
+                Dark
+            </button>
                 {
                     user?<>
                             <div data-tooltip-id="my-tooltip" data-tooltip-content={name}>
