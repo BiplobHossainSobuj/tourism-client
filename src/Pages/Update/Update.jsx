@@ -23,7 +23,7 @@ const Update = () => {
         const user_email = loadedTouristSpot.user_email;
         const updatedDetails = { tourists_spot_name, country_Name,spot_image,location,description,average_cost,seasonality,travel_time,totalVisitorsPerYear };
         console.log(updatedDetails);
-        fetch(`http://localhost:5000/update/${loadedTouristSpot._id}`,{
+        fetch(`https://tourism-management-server-five.vercel.app/update/${loadedTouristSpot._id}`,{
             method:"PUT",
             headers:{
                 'content-type':'application/json'

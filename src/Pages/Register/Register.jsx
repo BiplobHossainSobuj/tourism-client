@@ -25,7 +25,7 @@ const Register = () => {
                 updateProfile(res.user, {
                     displayName: name, photoURL: photoUrl
                 })
-                // fetch('http://localhost:5000/users', {
+                // fetch('https://tourism-management-server-five.vercel.app/users', {
                 //     method: 'POST',
                 //     headers: {
                 //         'content-type': 'application/json',

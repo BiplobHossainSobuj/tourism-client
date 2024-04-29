@@ -8,7 +8,7 @@ const MyList = () => {
     const [spots, setSpots] = useState([]);
     console.log(user)
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/delete/${id}`,{
+        fetch(`https://tourism-management-server-five.vercel.app/delete/${id}`,{
             method:'DELETE',
             headers:{
                 'content-type':'application/json'
@@ -26,7 +26,7 @@ const MyList = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/mylist/${user.email}`)
+        fetch(`https://tourism-management-server-five.vercel.app/mylist/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

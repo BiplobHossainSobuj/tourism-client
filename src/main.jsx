@@ -60,12 +60,12 @@ const router = createBrowserRouter([
       },
       {
         path:"/allTouristSpot/countries/:country_Name",
-        loader:({params})=>fetch(`http://localhost:5000/countries/${params.country_Name}`),
+        loader:({params})=>fetch(`https://tourism-management-server-five.vercel.app/countries/${params.country_Name}`),
         element:<CountryDetails></CountryDetails>
       },
       {
         path: "/update/:id",
-        loader:({params})=>fetch(`http://localhost:5000/update/${params.id}`),
+        loader:({params})=>fetch(`https://tourism-management-server-five.vercel.app/update/${params.id}`),
         element: <ProtectedRoute><Update></Update></ProtectedRoute>,
       },
     ],
