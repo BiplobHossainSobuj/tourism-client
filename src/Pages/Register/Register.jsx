@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const Register = () => {
     const authInfo = useContext(AuthContext);
-    const { user, createUser } = authInfo;
+    const { createUser } = authInfo;
     const [showPassword, setShowPassword] = useState(false);
     const handleRegister = (e) => {
         e.preventDefault();
@@ -16,8 +16,20 @@ const Register = () => {
         const email = form.email.value;
         const photoUrl = form.photo.value;
         const password = form.password.value;
-        const newUser = { name, email, photoUrl, password };
-        console.log(newUser);
+        // const newUser = { name, email, photoUrl, password };
+        // console.log(newUser);
+        if (password.length<6) {
+            toast('Password must be 6 characters or longer');
+            return
+        }
+        else if (!/[A-Z]/.test(password)) {
+            toast('Password should have one uppercase latter');
+            return
+        }
+        else if (!/[a-z]/.test(password)) {
+            toast('Password should have one lowercase latter');
+            return
+        }
         createUser(name, email, password, photoUrl)
             .then(res => {
                 const user = res.user;
@@ -25,21 +37,11 @@ const Register = () => {
                 updateProfile(res.user, {
                     displayName: name, photoURL: photoUrl
                 })
-                // fetch('https://tourism-management-server-five.vercel.app/users', {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json',
-                //     },
-                //     body: JSON.stringify(newUser)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         console.log(data)
-                //     })
                 toast('Registration successfull');
+                form.reset();
             })
             .catch(err => {
-                console.log(err);
+                toast(err.message);
             })
     }
 
