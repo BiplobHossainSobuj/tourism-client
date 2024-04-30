@@ -34,7 +34,8 @@ const Header = () => {
                         {navlinks}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                {/* <a className="btn btn-ghost text-xl">Royal Travel</a> */}
+                <h3 className='text-2xl font-bold'><img  className='h-6 w-6 inline-flex' src="https://i.ibb.co/K2cBVjk/travel-luggage-2028376.png"/>Royal Travel</h3>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
