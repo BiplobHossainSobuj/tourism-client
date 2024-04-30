@@ -17,7 +17,7 @@ const TouristSpotCard = ({ spot }) => {
                 <p>Seasion: {seasonality}</p>
                 </div>
                 <div className="card-actions justify-end">
-                    <Link to={`/allTouristSpot/${_id}`}><button className="btn btn-primary">View Details</button></Link>
+                    <Link to={`/allTouristSpot/${_id}`}><button className="btn btn-outline btn-info">View Details</button></Link>
                 </div>
             </div>
         </div>
