@@ -22,8 +22,6 @@ const Header = () => {
         <li><NavLink to='/allTouristSpot'>All Toursits Spot</NavLink></li>
         <li><NavLink to='/addTouristSpot'>Add Tourist Spot</NavLink></li>
         <li><NavLink to='/myList'>My List</NavLink></li>
-        <li><NavLink to='/register'>Register</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100">

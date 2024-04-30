@@ -2,27 +2,48 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
 import { FaRegEdit } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MyList = () => {
     const { user } = useContext(AuthContext);
     const [spots, setSpots] = useState([]);
     console.log(user)
     const handleDelete = (id) => {
-        fetch(`https://tourism-management-server-five.vercel.app/delete/${id}`,{
-            method:'DELETE',
-            headers:{
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(user)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data);
-            if (data.deletedCount>0) {
-                const remaining = spots.filter(user=>user._id!==id)
-            setSpots(remaining);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://tourism-management-server-five.vercel.app/delete/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                              });
+                            const remaining = spots.filter(user => user._id !== id)
+                            setSpots(remaining);
+
+                        }
+                    })
+                  
             }
-        })
+        });
+
     }
 
     useEffect(() => {
@@ -41,7 +62,7 @@ const MyList = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className='font-bold bg-slate-600 text-white text-xl'>
                             <th>Spot Name</th>
                             <th>Country</th>
                             <th>Avarage Cost</th>
