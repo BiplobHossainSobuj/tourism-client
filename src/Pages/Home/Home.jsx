@@ -3,6 +3,7 @@ import Carosel from '../../components/Carosel/Carosel';
 import { useLoaderData } from 'react-router-dom';
 import TouristSpotCard from '../../components/TouristSpotCard/TouristSpotCard';
 import Countries from '../../components/Countries/Countries';
+import Services from '../../components/Services/Services';
 
 const Home = () => {
     const loadedAllSpots = useLoaderData();
@@ -16,6 +17,8 @@ const Home = () => {
             </div>
             <h1>Country</h1>
             <Countries></Countries>
+            <h1>We Offers</h1>
+            <Services></Services>
         </div>
     );
 };
